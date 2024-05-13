@@ -1,0 +1,35 @@
+<section class="text-gray-400 bg-gray-900 body-font">
+    <div class="container px-5 py-24 mx-auto">
+      <div class="flex flex-col text-center w-full mb-20">
+        <h1 class="text-2xl font-medium title-font mb-4 text-white tracking-widest">OUR TEAM</h1>
+        <p class="lg:w-2/3 mx-auto leading-relaxed text-base">At Whistle Street, we believe in transparency, camaraderie, and celebrating the unique contributions of each member of our team. Get acquainted with the talented individuals who bring passion and expertise to every cocktail and mocktail creation</p>
+      </div>
+      <div class="flex flex-wrap -m-4">
+        <div *ngFor="let employee of employees" class="p-4 lg:w-1/2">
+          <div class="h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
+            <img alt="team" class="flex-shrink-0 rounded-lg w-48 h-48 object-cover object-center sm:mb-0 mb-4" [src]="employee.imageUrl">
+            <div class="flex-grow sm:pl-8">
+              <h2 class="title-font font-medium text-lg text-white">{{ employee.fullname }}</h2>
+              <p class="mb-1">{{ employee.employeeBio }}</p>
+              <p class="mb-1"><br>Employee Number: {{ employee.employeeNumber }}</p>
+              <p class="mb-1">Gender: {{ employee.gender }}</p>
+              <p class="mb-1">Email: {{ employee.email }}</p>
+              <div *ngIf="employee.employmentStatus === 'Full-time Employee'; else notFullTime">
+                <p>Employment Status: Full-time Employee</p>
+              </div>
+              <ng-template #notFullTime>
+                <div *ngIf="employee.employmentStatus === 'Part-time Employee'; else seasonal">
+                  <p>Employment Status: Part-time Employee</p>
+                </div>
+                <ng-template #seasonal>
+                  <p>Employment Status: Seasonal Employee</p>
+                </ng-template>
+              </ng-template>
+              <p>Salary: {{employee.salary}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
